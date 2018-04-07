@@ -136,7 +136,7 @@ class SubDetailsComp extends Component{
                     <button style={aStyle} title='Save' onClick={this.closeAddPopup}>Save</button> <br/>
                      <input style={marT} value={this.state.addModalLable} type="text" onChange={this.updateAddLabel} />
                             <br/>
-                        <input type="radio" name="detailType" value="input" onChange={this.changeAddElement}/> Input <br/>
+                        <input type="radio" name="detailType" value="input" onChange={this.changeAddElement}/>Input <br/>
                         <input type="radio" name="detailType" value="dropdown" onChange={this.changeAddElement}/>Drop Down <br/>
                         
                     </dialog>
