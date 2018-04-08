@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import HeaderText from './component/HeaderText';
 import DescriptionComp from './component/DescriptionComp'

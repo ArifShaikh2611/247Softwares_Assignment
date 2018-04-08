@@ -7,6 +7,7 @@
     "react-dnd": "^2.6.0",
     "react-dnd-html5-backend": "^2.6.0",
     "react-dom": "^16.3.1",
+    "react-drag-and-drop": "^2.4.0",
     "react-draggable": "^3.0.5",
     "react-draggable-component": "^4.4.0",
     "react-scripts": "1.1.4"

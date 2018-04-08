@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Draggable from 'react-draggable-component';
 
 const textAreaStyle = {
     display : "block",

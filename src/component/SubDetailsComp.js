@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
-import HTML5Backend from 'react-dnd-html5-backend';
-import {DragDropContext} from 'react-dnd';
 
 const divStyle = {
     border : "dotted 1px black",
@@ -96,7 +94,7 @@ class SubDetailsComp extends Component{
         return (null);
 
         return(
-            
+            <Draggable>
             <div style={divStyle}>
 
               { this.state.displayType === "showDetail" ? <div> <label>{this.state.labelTile}</label>
@@ -104,7 +102,7 @@ class SubDetailsComp extends Component{
                 <button style={buttonStyle} onClick={this.openPopup}>Edit</button>
                
                 {   
-                    this.state.whichElement == "dropdown" ? <select style={inputStyle} type="text" onChange={this.setInputValue} value={this.state.inputValue}>
+                    this.state.whichElement === "dropdown" ? <select style={inputStyle} type="text" onChange={this.setInputValue} value={this.state.inputValue}>
                     {
                         this.state.optionArray.map((value,i) => <option  key={i}>{value}</option>)
                         }
@@ -145,7 +143,7 @@ class SubDetailsComp extends Component{
             }
               
                 </div>
-            
+                </Draggable>
             
         )
     }
