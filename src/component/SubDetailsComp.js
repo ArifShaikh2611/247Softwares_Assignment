@@ -94,7 +94,7 @@ class SubDetailsComp extends Component{
         return (null);
 
         return(
-            <Draggable>
+            <Draggable cancel=".not-draggable">
             <div style={divStyle}>
 
               { this.state.displayType === "showDetail" ? <div> <label>{this.state.labelTile}</label>
@@ -112,7 +112,7 @@ class SubDetailsComp extends Component{
                 {this.state.showPopup && (
                     <dialog open >
                     <button style={aStyle} title='Save' onClick={this.closePopup}>Save</button><br/>
-                    <input value={this.state.modalLable} style={marT} type="text" onChange={this.updateLabel.bind(this)}/>
+                    <input class="not-draggable" value={this.state.modalLable} style={marT} type="text" onChange={this.updateLabel.bind(this)}/>
                         
                         {
                            this.state.optionArray.map((value,i) => 
@@ -132,7 +132,7 @@ class SubDetailsComp extends Component{
                         {this.state.showAddPopup && (
                     <dialog open >
                     <button style={aStyle} title='Save' onClick={this.closeAddPopup}>Save</button> <br/>
-                     <input style={marT} value={this.state.addModalLable} type="text" onChange={this.updateAddLabel} />
+                     <input class="not-draggable" style={marT} value={this.state.addModalLable} type="text" onChange={this.updateAddLabel} />
                             <br/>
                         <input type="radio" name="detailType" value="input" onChange={this.changeAddElement}/>Input <br/>
                         <input type="radio" name="detailType" value="dropdown" onChange={this.changeAddElement}/>Drop Down <br/>
