@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Draggable from 'react-draggable';
+import { DragSource, DropTarget } from 'react-dnd';
+import { cardTarget, cardSource } from './dragUtils';
 
 const divStyle = {
     border : "dotted 1px black",
     display: "inline-block",
     padding : "10px",
-    marginRight : "15px"
+    marginRight : "15px",
+    position: 'relative'
 }
 
 const buttonStyle ={
@@ -93,9 +95,10 @@ class SubDetailsComp extends Component{
         if(!this.state.isVisible)
         return (null);
 
-        return(
-            <Draggable cancel=".not-draggable">
-            <div style={divStyle}>
+        const opacity = { opacity: this.props.isDragging ? 0 : 1 }
+
+        const content = (
+            <div style={{ ...divStyle, ...opacity }}>
 
               { this.state.displayType === "showDetail" ? <div> <label>{this.state.labelTile}</label>
               <button style={buttonStyle} onClick={this.deleteDiv}>X</button>
@@ -132,7 +135,7 @@ class SubDetailsComp extends Component{
                         {this.state.showAddPopup && (
                     <dialog open >
                     <button style={aStyle} title='Save' onClick={this.closeAddPopup}>Save</button> <br/>
-                     <input class="not-draggable" style={marT} value={this.state.addModalLable} type="text" onChange={this.updateAddLabel} />
+                     <input style={marT} value={this.state.addModalLable} type="text" onChange={this.updateAddLabel} />
                             <br/>
                         <input type="radio" name="detailType" value="input" onChange={this.changeAddElement}/>Input <br/>
                         <input type="radio" name="detailType" value="dropdown" onChange={this.changeAddElement}/>Drop Down <br/>
@@ -143,10 +146,19 @@ class SubDetailsComp extends Component{
             }
               
                 </div>
-                </Draggable>
             
         )
+		return this.props.connectDragSource(
+			this.props.connectDropTarget(content),
+        )        
     }
 }
 
-export default SubDetailsComp;
+const target = DropTarget("detailsCard", cardTarget, connect => ({
+	connectDropTarget: connect.dropTarget(),
+}))(SubDetailsComp)
+
+export default DragSource("detailsCard", cardSource, (connect, monitor) => ({
+	connectDragSource: connect.dragSource(),
+	isDragging: monitor.isDragging(),
+}))(target)
